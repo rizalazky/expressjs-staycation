@@ -30,7 +30,7 @@ module.exports={
                 bank.noRekening=noRekening
                 
             }else{
-                console.log('ELSE')
+                // console.log('ELSE')
                 await fs.unlink(path.join('public/images/bank/'+bank.imageUrl))
                 bank.name=name
                 bank.nameBank=nameBank

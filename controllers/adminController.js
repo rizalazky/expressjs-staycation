@@ -2,7 +2,6 @@ const modelCategories=require('./../models/M_Category')
 
 module.exports={
     viewDashoard: (req,res)=>{
-        
         res.render('admin/dashboard/view_dashboard',{title:'Dashboard'})
     },
     viewCategories:async(req,res)=>{

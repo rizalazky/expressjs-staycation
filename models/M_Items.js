@@ -1,4 +1,5 @@
 const mongoose=require('mongoose')
+const {ObjectId}=mongoose.Schema
 
 const itemSchema=new mongoose.Schema({
     title:{
@@ -23,7 +24,7 @@ const itemSchema=new mongoose.Schema({
         ref:'Categories'
     },imageId:[{
         type:ObjectId,
-        ref:'images'
+        ref:'Images'
     }],featuresId:[{
         type:ObjectId,
         ref:'features'

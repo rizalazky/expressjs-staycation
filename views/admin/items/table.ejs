@@ -7,14 +7,16 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTableBank" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTableItems" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Name</th>
-                        <th>Name Bank</th>
-                        <th>No Rekening</th>
-                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>City</th>
+                        <th>Country</th>
+                        <th>Images</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -22,20 +24,27 @@
                     <% for(let i=0;i<data.length;i++){ %>
                         <tr>
                             <td><%= i+1 %></td>
-                            <td><%= data[i].name %></td>
-                            <td><%= data[i].nameBank %></td>
-                            <td><%= data[i].noRekening %></td>
+                            <td><%= data[i].title %></td>
+                            <td><%= data[i].categoryId.name %></td>
+                            <td><%= data[i].price %></td>
+                            <td><%= data[i].city %></td>
+                            <td><%= data[i].country %></td>
                             <td>
-                                <img src="/images/bank/<%= data[i].imageUrl %>" alt="<%= data[i].imageUrl %>" width="30px"/>
+                                <% for(let y=0;y<data[i].imageId.length;y++){ %>
+                                    <img src="/images/items/<%= data[i].imageId[y].imageUrl %>" alt="<%= data[i].imageId[y].imageUrl %>" width="30px"/>
+
+                                <% } %>
                             </td>
                             <td>
-                                <form action="/admin/bank/<%= data[i]._id %>?_method=DELETE" method="POST">
-                                <a href="javascipt:void()" class="btn btn-warning btn-sm edit-bank" onclick="" data-toggle="modal" data-target="#modal_edit"
+                                <form action="/admin/items/<%= data[i]._id %>?_method=DELETE" method="POST">
+                                <a href="javascipt:void()" class="btn btn-warning btn-sm edit-items" onclick="" data-toggle="modal" data-target="#modal_edit"
                                     data-id="<%= data[i]._id %>"
-                                    data-name="<%= data[i].name %>"
-                                    data-namebank="<%= data[i].nameBank %>"
-                                    data-norekening="<%= data[i].noRekening %>"
-                                    data-imageurl="<%= data[i].imageUrl %>"
+                                    data-title="<%= data[i].title %>"
+                                    data-price="<%= data[i].price %>"
+                                    data-desc="<%= data[i].desc %>"
+                                    data-city="<%= data[i].city %>"
+                                    data-country="<%= data[i].country %>"
+                                    data-categoryid="<%= data[i].categoryId._id %>"
                                 >
                                     <i class="fas fa-pen"></i>
                                 </a>
@@ -50,10 +59,12 @@
                 <tfoot>
                     <tr>
                         <th>No</th>
-                        <th>Name</th>
-                        <th>Name Bank</th>
-                        <th>No Rekening</th>
-                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>City</th>
+                        <th>Country</th>
+                        <th>Images</th>
                         <th>Actions</th>
                     </tr>
                 </tfoot>

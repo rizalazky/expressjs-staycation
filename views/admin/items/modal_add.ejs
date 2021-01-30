@@ -1,34 +1,48 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modal_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add Items</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
         </button>
       </div>
-      <form action="/admin/bank" method="POST" enctype="multipart/form-data">
+      <form action="/admin/items" method="POST" enctype="multipart/form-data">
         <div class="modal-body">
             <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" name="name"  class="form-control" required/>
+              <label for="title">Title</label>
+              <input type="text" name="title"  class="form-control" required/>
             </div>
             <div class="form-group">
-              <label for="nameBank">Name Bank</label>
-              <input type="text" name="nameBank"  class="form-control" required/>
+              <label for="categoryId">Category</label>
+              <select name="categoryId" id="" class="form-control">
+                <option value="">--select category--</option>
+                <% for(let i=0;i<categories.length;i++){ %>
+                  <option value="<%= categories[i]._id %>"><%= categories[i].name %></option>
+                <% } %>
+              </select>
             </div>
             <div class="form-group">
-              <label for="noRekening">Nomer Rekening</label>
-              <input type="text" name="noRekening"  class="form-control" required/>
+              <label for="noRekening">Price</label>
+              <input type="text" name="price" placeholder="Rp."  class="form-control" required/>
+            </div>
+            <div class="form-group">
+              <label for="noRekening">Country</label>
+              <input type="text" name="country"  class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label for="noRekening">City</label>
+              <input type="text" name="city"  class="form-control" required/>
             </div>
             
-              <input type="hidden" name="dest"  class="form-control" value="bank"/>
+            <input type="hidden" name="dest"  class="form-control" value="items"/>
+            <%- include('ckeditor.ejs') %>
             
             <div class="form-group">
               <label for="image">Image</label>
-              <input type="file" name="image"  class="form-control" required/>
+              <input type="file" name="image"  class="form-control" required multiple/>
             </div>
           </div>
           <div class="modal-footer">

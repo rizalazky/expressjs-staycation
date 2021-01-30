@@ -62,3 +62,25 @@
     <%- include('modal_add.ejs') %>
     <%- include('modal_edit.ejs') %>
     <%- include('../../partials/js.ejs') %>
+
+    <script>
+        CKEDITOR.replace( 'desc' );
+        CKEDITOR.replace( 'inp-edit-desc' );
+
+        $(document).ready(function(){
+            $('#dataTableItems').DataTable()
+            $('#dataTableItems').on('click','.edit-items',function(){
+                
+                
+                $('#inp-edit-price').val($(this).data('price'))
+                $('#inp-edit-id').val($(this).data('id'))
+                $('#inp-edit-title').val($(this).data('title'))
+                CKEDITOR.instances['inp-edit-desc'].setData($(this).data('desc'));
+                $('#inp-edit-city').val($(this).data('city'))
+                $('#inp-edit-country').val($(this).data('country'))
+                $('#inp-edit-categoryId').val($(this).data('categoryid'))
+                
+                
+            })
+        })
+    </script> 

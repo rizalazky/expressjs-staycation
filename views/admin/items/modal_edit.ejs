@@ -1,38 +1,53 @@
 
-<!-- Modal  -->
+<!-- Modal -->
 <div class="modal fade" id="modal_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Bank</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edit Items</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
         </button>
       </div>
-      <form action="/admin/bank?_method=PUT" method="POST" enctype="multipart/form-data">
+      <form action="/admin/items?_method=put" method="POST" enctype="multipart/form-data">
         <div class="modal-body">
-          
-          <input type="hidden" name="id" id="id" class="form-control" required/>
-          <input type="hidden" name="dest" id="dest" class="form-control" value="bank"/>
-          
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" class="form-control" required/>
-          </div>
-          <div class="form-group">
-            <label for="nameBank">Name Bank</label>
-            <input type="text" name="nameBank" id="nameBank" class="form-control" required/>
-          </div>
-          <div class="form-group">
-            <label for="noRekening">Nomer Rekening</label>
-            <input type="text" name="noRekening" id="noRekening" class="form-control" required/>
-          </div>
-          
-          
-          <div class="form-group">
-            <label for="image">Image</label>
-            <input type="file" name="image" id="imageUrl" class="form-control"/>
-          </div>
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" name="title" id="inp-edit-title" class="form-control" required/>
+            </div>
+            <div class="form-group">
+              <label for="categoryId">Category</label>
+              <select name="categoryId" id="inp-edit-categoryId" class="form-control">
+                <option value="">--select category--</option>
+                <% for(let i=0;i<categories.length;i++){ %>
+                  <option value="<%= categories[i]._id %>"><%= categories[i].name %></option>
+                <% } %>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="noRekening">Price</label>
+              <input type="text" name="price" placeholder="Rp." id="inp-edit-price"  class="form-control" required/>
+            </div>
+            <div class="form-group">
+              <label for="noRekening">Country</label>
+              <input type="text" name="country" id="inp-edit-country"  class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label for="noRekening">City</label>
+              <input type="text" name="city" id="inp-edit-city"  class="form-control" required/>
+            </div>
+            
+            <input type="hidden" name="dest"  class="form-control" value="items"/>
+            <input type="hidden" name="id" id="inp-edit-id"  class="form-control" value="items"/>
+            <div class="form-group">
+              <label for="desc">Description</label>
+              <textarea name="desc" id="inp-edit-desc" cols="30" rows="10"></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label for="image">Image</label>
+              <input type="file" name="image"  class="form-control" multiple/>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

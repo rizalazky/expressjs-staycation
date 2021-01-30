@@ -2,7 +2,7 @@ const router=require('express').Router()
 const adminController=require('../controllers/adminController')
 const bankController=require('../controllers/bankController')
 const itemsController=require('../controllers/itemController')
-const {upload}=require('../middleware/multer')
+const {upload,uploadMultiple}=require('../middleware/multer')
 
 router.get('/dashboard',adminController.viewDashoard)
 // categories
@@ -17,5 +17,8 @@ router.put('/bank',upload,bankController.editBank)
 router.delete('/bank/:id',upload,bankController.deleteBank)
 // items
 router.get('/items',itemsController.viewItems)
+router.post('/items',uploadMultiple,itemsController.add)
+router.put('/items',uploadMultiple,itemsController.edit)
+router.delete('/items/:id',itemsController.delete)
 
 module.exports=router

@@ -11,7 +11,7 @@ const methoOverride=require('method-override')
 
 var app = express();
 
-mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb://localhost:27017/staycation', {useNewUrlParser: true, useUnifiedTopology: true});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,6 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/sbadmin/',express.static(path.join(__dirname, 'node_modules/startbootstrap-sb-admin-2/')));
+app.use('/ckeditor/',express.static(path.join(__dirname, 'node_modules/ckeditor')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

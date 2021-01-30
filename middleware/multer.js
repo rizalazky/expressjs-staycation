@@ -5,7 +5,7 @@ const fs = require("fs");
 
 const storageMultiple = multer.diskStorage({
   destination: function (req, file, cb) {
-    var dir = 'public/images';
+    var dir = `public/images/${req.body.dest}`;
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);
     }
@@ -18,7 +18,7 @@ const storageMultiple = multer.diskStorage({
 
 const uploadMultiple = multer({
   storage: storageMultiple,
-  limits: { fileSize: 1000000 },
+  limits: { fileSize: 2000000 },
   fileFilter: function (req, file, cb) {
     checkFileType(file, cb);
   }
