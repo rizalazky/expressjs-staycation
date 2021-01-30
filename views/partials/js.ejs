@@ -15,13 +15,28 @@
 <script src="/sbadmin/js/demo/datatables-demo.js"></script>
 <script>
     $('#dataTableCategory').DataTable()
+    $('#dataTableBank').DataTable()
     $('#dataTableCategory').on('click','.edit-category',function(){
         let id=$(this).data('id')
         let name=$(this).data('name')
-        console.log(name)
-        console.log('test')
+    
         $('#input-name').val(name)
         $('#input-id').val(id)
+    })
+
+    $("#dataTableBank").on('click','.edit-bank',function(){
+        console.log($(this))
+        let id=$(this).data('id')
+        let name=$(this).data('name')
+        let nameBank=$(this).data('namebank')
+        let noRekening=$(this).data('norekening')
+        let imageUrl=$(this).data('imageurl')
+    
+        $('#name').val(name)
+        $('#id').val(id)
+        $('#nameBank').val(nameBank)
+        $('#noRekening').val(noRekening)
+        // $('#imageUrl').val(imageUrl)
     })
 </script>
 </body>

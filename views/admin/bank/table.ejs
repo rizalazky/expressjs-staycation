@@ -1,0 +1,64 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_add">
+    <i class="fas fa-plus"></i>
+  </button>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTableBank" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Name Bank</th>
+                        <th>No Rekening</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(let i=0;i<data.length;i++){ %>
+                        <tr>
+                            <td><%= i+1 %></td>
+                            <td><%= data[i].name %></td>
+                            <td><%= data[i].nameBank %></td>
+                            <td><%= data[i].noRekening %></td>
+                            <td>
+                                <img src="/images/bank/<%= data[i].imageUrl %>" alt="<%= data[i].imageUrl %>" width="30px"/>
+                            </td>
+                            <td>
+                                <form action="/admin/bank/<%= data[i]._id %>?_method=DELETE" method="POST">
+                                <a href="javascipt:void()" class="btn btn-warning btn-sm edit-bank" onclick="" data-toggle="modal" data-target="#modal_edit"
+                                    data-id="<%= data[i]._id %>"
+                                    data-name="<%= data[i].name %>"
+                                    data-namebank="<%= data[i].nameBank %>"
+                                    data-norekening="<%= data[i].noRekening %>"
+                                    data-imageurl="<%= data[i].imageUrl %>"
+                                >
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                                    <button type="submit" class="btn btn-danger btn-sm" >
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Name Bank</th>
+                        <th>No Rekening</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </tfoot>
+            
+            </table>
+        </div>
+    </div>
+</div>
