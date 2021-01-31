@@ -2,6 +2,7 @@ const router=require('express').Router()
 const adminController=require('../controllers/adminController')
 const bankController=require('../controllers/bankController')
 const itemsController=require('../controllers/itemController')
+const featuresController=require('../controllers/featuresController')
 const {upload,uploadMultiple}=require('../middleware/multer')
 
 router.get('/dashboard',adminController.viewDashoard)
@@ -20,5 +21,11 @@ router.get('/items',itemsController.viewItems)
 router.post('/items',uploadMultiple,itemsController.add)
 router.put('/items',uploadMultiple,itemsController.edit)
 router.delete('/items/:id',itemsController.delete)
+// items detail
+router.get('/items/detail/:id',itemsController.detail)
+// features
+router.post('/items/detail/features',upload,featuresController.add)
+router.put('/items/detail/features',upload,featuresController.edit)
+router.delete('/items/detail/features/:id/:iditem',featuresController.delete)
 
 module.exports=router

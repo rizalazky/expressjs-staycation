@@ -27,10 +27,10 @@ const itemSchema=new mongoose.Schema({
         ref:'Images'
     }],featuresId:[{
         type:ObjectId,
-        ref:'features'
+        ref:'Features'
     }],activityId:[{
         type:ObjectId,
-        ref:'activities'
+        ref:'Activities'
     }]
 })
 

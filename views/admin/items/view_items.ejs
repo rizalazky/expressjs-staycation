@@ -17,8 +17,10 @@
                 <div class="container-fluid">
                     
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800"><%= title %></h1>
-                    <%- include('table.ejs') %>
+                    <% if(render === 'table'){%>
+                        <h1 class="h3 mb-4 text-gray-800"><%= title %></h1>
+                    <%}%>
+                    <%- include(`${render}.ejs`) %>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -69,9 +71,8 @@
 
         $(document).ready(function(){
             $('#dataTableItems').DataTable()
+            $('#featuresTable').DataTable()
             $('#dataTableItems').on('click','.edit-items',function(){
-                
-                
                 $('#inp-edit-price').val($(this).data('price'))
                 $('#inp-edit-id').val($(this).data('id'))
                 $('#inp-edit-title').val($(this).data('title'))
@@ -79,8 +80,14 @@
                 $('#inp-edit-city').val($(this).data('city'))
                 $('#inp-edit-country').val($(this).data('country'))
                 $('#inp-edit-categoryId').val($(this).data('categoryid'))
-                
-                
+            })
+            $('#featuresTable').on('click','.btn-features-edit',function(){
+                $('#formFeatures').attr('action','/admin/items/detail/features?_method=PUT')
+                $('#descriptions').val($(this).data('descriptions'))
+                $('#featuresid').val($(this).data('idfeatures'))
+                $('#qty').val($(this).data('qty'))
+                $('#file').removeAttr('required')
+                // $('#inp-edit-city').val($(this).data('city'))
             })
         })
     </script> 

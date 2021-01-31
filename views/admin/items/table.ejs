@@ -37,7 +37,7 @@
                             </td>
                             <td>
                                 <form action="/admin/items/<%= data[i]._id %>?_method=DELETE" method="POST">
-                                <a href="javascipt:void()" class="btn btn-warning btn-sm edit-items" onclick="" data-toggle="modal" data-target="#modal_edit"
+                                <a href="javascript:void()" class="btn btn-warning btn-sm edit-items" onclick="" data-toggle="modal" data-target="#modal_edit"
                                     data-id="<%= data[i]._id %>"
                                     data-title="<%= data[i].title %>"
                                     data-price="<%= data[i].price %>"
@@ -51,6 +51,9 @@
                                     <button type="submit" class="btn btn-danger btn-sm" >
                                         <i class="fas fa-trash"></i>
                                     </button>
+                                    <a href="/admin/items/detail/<%= data[i]._id %>/" class="btn btn-info btn-sm">
+                                        <i class="fas fa-plus"></i>
+                                    </a>
                                 </form>
                             </td>
                         </tr>

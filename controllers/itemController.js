@@ -1,6 +1,7 @@
 const modelCategory=require('./../models/M_Category')
 const modelItem=require('./../models/M_Items')
 const modelImages=require('../models/M_Image.js')
+const modelFeatures=require('../models/M_Features')
 const fs=require('fs-extra')
 const path=require('path')
 
@@ -14,7 +15,8 @@ module.exports={
         res.render('./../views/admin/items/view_items',{
             data:data,
             title:'Items',
-            categories:categories
+            categories:categories,
+            render:'table'
         })
     },add:async(req,res)=>{
         try {
@@ -110,5 +112,19 @@ module.exports={
 
         await item.remove()
         res.redirect('/admin/items')
+    },detail:async (req,res)=>{
+        let id=req.params.id
+        const data=await modelItem.findOne({_id:id})
+            .populate({path:'imageId',select:'id imageUrl'})
+            .populate({path:'categoryId',select:'_id name'})
+            .populate({path:'featuresId',select:'_id descriptions qty imageUrl'})
+        const categories=await modelCategory.find()
+        
+        res.render('./../views/admin/items/view_items',{
+            data:data,
+            title:'Items',
+            categories:categories,
+            render:'tab-nav'
+        })
     }
 }
