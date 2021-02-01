@@ -118,7 +118,10 @@ module.exports={
             .populate({path:'imageId',select:'id imageUrl'})
             .populate({path:'categoryId',select:'_id name'})
             .populate({path:'featuresId',select:'_id descriptions qty imageUrl'})
+            .populate({path:'activityId',select:'_id descriptions type imageUrl'})
         const categories=await modelCategory.find()
+
+        
         
         res.render('./../views/admin/items/view_items',{
             data:data,

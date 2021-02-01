@@ -4,6 +4,7 @@ const bankController=require('../controllers/bankController')
 const itemsController=require('../controllers/itemController')
 const featuresController=require('../controllers/featuresController')
 const {upload,uploadMultiple}=require('../middleware/multer')
+const activityController = require('../controllers/activityController')
 
 router.get('/dashboard',adminController.viewDashoard)
 // categories
@@ -27,5 +28,9 @@ router.get('/items/detail/:id',itemsController.detail)
 router.post('/items/detail/features',upload,featuresController.add)
 router.put('/items/detail/features',upload,featuresController.edit)
 router.delete('/items/detail/features/:id/:iditem',featuresController.delete)
+// acrivities
+router.post('/items/detail/activities',upload,activityController.add)
+router.put('/items/detail/activities',upload,activityController.edit)
+router.delete('/items/detail/activities/:id/:iditem',activityController.delete)
 
 module.exports=router

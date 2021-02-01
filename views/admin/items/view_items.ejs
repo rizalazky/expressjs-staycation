@@ -72,6 +72,7 @@
         $(document).ready(function(){
             $('#dataTableItems').DataTable()
             $('#featuresTable').DataTable()
+            $('#activitiesTable').DataTable()
             $('#dataTableItems').on('click','.edit-items',function(){
                 $('#inp-edit-price').val($(this).data('price'))
                 $('#inp-edit-id').val($(this).data('id'))
@@ -87,6 +88,14 @@
                 $('#featuresid').val($(this).data('idfeatures'))
                 $('#qty').val($(this).data('qty'))
                 $('#file').removeAttr('required')
+                // $('#inp-edit-city').val($(this).data('city'))
+            })
+            $('#activitiesTable').on('click','.btn-activity-edit',function(){
+                $('#formActivities').attr('action','/admin/items/detail/activities?_method=PUT')
+                $('#descriptions-act').val($(this).data('descriptions'))
+                $('#activityId').val($(this).data('activityid'))
+                $('#type').val($(this).data('type'))
+                $('#fileActivity').removeAttr('required')
                 // $('#inp-edit-city').val($(this).data('city'))
             })
         })

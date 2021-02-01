@@ -1,0 +1,73 @@
+<div class="card">
+    <div class="card-header">
+    <!-- <h3 class="h3">Features</h3> -->
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6 p-4">
+        <div class="container">
+          <form id="formActivities" action="/admin/items/detail/activities" method="POST" enctype="multipart/form-data">
+            <!-- hidden input -->
+            <input type="hidden" name="dest" class="form-control" value="activities">
+            <input type="hidden" name="id" class="form-control" id="id-act" value="<%= data._id %>">
+            <input type="hidden" name="activityId" class="form-control" id="activityId">
+            <!-- hidden input -->
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Descriptions</label>
+                <input type="text" name="descriptions" class="form-control" id="descriptions-act" required>
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Type</label>
+                <input type="text" name="type" class="form-control" id="type" required>
+              </div>
+              <div class="mb-4">
+                <label for="exampleInputPassword1" class="form-label">Image</label>
+                <input type="file" name="image" class="form-control" id="fileActivity" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </form> 
+          </div>
+        </div>
+        <div class="col-md-6 p-4">
+          <table id="activitiesTable" class="table table-striped table-sm">
+            <thead>
+              <th>No</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Image</th>
+              <th>Actions</th>
+            </thead>
+            <tbody>
+              <% for(let i=0;i<data.activityId.length;i++){ %>
+                <tr>
+                  <td><%= i+1 %></td>
+                  <td><%= data.activityId[i].descriptions %></td>
+                  <td><%= data.activityId[i].type %></td>
+                  <td>
+                    <img src="/images/activities/<%= data.activityId[i].imageUrl %>" alt="<%= data.featuresId[i].imageUrl %>" width="30px"/>
+                  </td>
+                  <td>
+                    <form action="/admin/items/detail/activities/<%= data.activityId[i]._id %>/<%= data._id %>?_method=DELETE" method="post">
+                      <a href="javascript:void()" class="btn btn-circle btn-primary btn-sm btn-activity-edit"
+                              data-activityid="<%= data.activityId[i]._id %>"
+                              data-descriptions="<%= data.activityId[i].descriptions %>"
+                              data-type="<%= data.activityId[i].type %>"
+                              data-imageurl="<%= data.activityId[i].imageUrl %>"
+                      >
+                        <i class="fas fa-pen"></i>
+                      </a>
+                      <button type="submit" class="btn btn-danger btn-circle btn-sm" >
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    
+                    </form>
+                  </td>
+                </tr>
+              <%}%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer"></div>
+  </div>

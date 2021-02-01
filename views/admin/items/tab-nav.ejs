@@ -18,80 +18,10 @@
   </ul>
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="features" role="tabpanel" aria-labelledby="home-tab">
-      <div class="card">
-        <div class="card-header">
-        <!-- <h3 class="h3">Features</h3> -->
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-6 p-4">
-            <div class="container">
-              <form id="formFeatures" action="/admin/items/detail/features" method="POST" enctype="multipart/form-data">
-                <!-- hidden input -->
-                <input type="hidden" name="dest" class="form-control" id="dest" value="features">
-                <input type="hidden" name="id" class="form-control" id="id" value="<%= data._id %>">
-                <input type="hidden" name="featuresid" class="form-control" id="featuresid">
-                <!-- hidden input -->
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Descriptions</label>
-                    <input type="text" name="descriptions" class="form-control" id="descriptions" required>
-                  </div>
-                  <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Qty</label>
-                    <input type="number" name="qty" class="form-control" id="qty" required>
-                  </div>
-                  <div class="mb-4">
-                    <label for="exampleInputPassword1" class="form-label">Image</label>
-                    <input type="file" name="image" class="form-control" id="file" required>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Save</button>
-                </form> 
-              </div>
-            </div>
-            <div class="col-md-6 p-4">
-              <table id="featuresTable" class="table table-striped table-sm">
-                <thead>
-                  <th>No</th>
-                  <th>Description</th>
-                  <th>Qty</th>
-                  <th>Image</th>
-                  <th>Actions</th>
-                </thead>
-                <tbody>
-                  <% for(let i=0;i<data.featuresId.length;i++){ %>
-                    <tr>
-                      <td><%= i+1 %></td>
-                      <td><%= data.featuresId[i].descriptions %></td>
-                      <td><%= data.featuresId[i].qty %></td>
-                      <td>
-                        <img src="/images/features/<%= data.featuresId[i].imageUrl %>" alt="<%= data.featuresId[i].imageUrl %>" width="30px"/>
-                      </td>
-                      <td>
-                        <form action="/admin/items/detail/features/<%= data.featuresId[i]._id %>/<%= data._id %>?_method=DELETE" method="post">
-                          <a href="javascript:void()" class="btn btn-circle btn-primary btn-sm btn-features-edit"
-                                  data-idfeatures="<%= data.featuresId[i]._id %>"
-                                  data-descriptions="<%= data.featuresId[i].descriptions %>"
-                                  data-qty="<%= data.featuresId[i].qty %>"
-                                  data-imageurl="<%= data.featuresId[i].imageUrl %>"
-                          >
-                            <i class="fas fa-pen"></i>
-                          </a>
-                          <button type="submit" class="btn btn-danger btn-circle btn-sm" >
-                            <i class="fas fa-trash"></i>
-                          </button>
-                        
-                        </form>
-                      </td>
-                    </tr>
-                  <%}%>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="card-footer"></div>
-      </div>
+      <%- include('tab-nav-item/features.ejs') %>
     </div>
-    <div class="tab-pane fade " id="activity" role="tabpanel" aria-labelledby="profile-tab">Profile</div>
+    <div class="tab-pane fade " id="activity" role="tabpanel" aria-labelledby="profile-tab">
+      <%- include('tab-nav-item/activities.ejs') %>
+    </div>
     <!-- <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Contact</div> -->
   </div>
